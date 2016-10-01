@@ -3,32 +3,21 @@ var ObjectId = require('mongodb').ObjectID;
 var MongoClient = mongodb.MongoClient;
 var url = 'mongodb://localhost:27017/decisions';
 
-exports.view = function(req, res){
+// Get latest decision as a JSON object.
+exports.asJSON = function(req, res) {
 
-    var currentDate = Date.now();
+    collection.find({}, {sort: {datefield: 1}}).toArray(function(err, docs) {...});
 
-    console.log("decision_name: " + decision_name);
-    console.log("choice_once: " + choice_one);
-    console.log("choice_two: " + choice_two);
+    db.collection('decisions').find({}, {sort: {decision_id : 'desc'}}).toArray(function(err, docs) {
+        if (err) throw (err);
 
-    // Connect to MongoDB and insert new decision_name
-    MongoClient.connect(url, function(err, db) {
-        if (!err) {
-            var collection_decisions = db.collection('decisions');
-            var decisionToAdd = {
-                "decision_name" : decision_name,
-                "choice_a" : choice_one,
-                "choice_b" : choice_two,
-                "score_a" : 0,
-                "userId" : 0,
-                "date_created" : Date.now()
-            };
+        console.log("Found the following records");
+        console.log(docs);
 
-            var ans = collection_decisions.insertOne(decisionToAdd, function(err, resp) {
-                console.log(err ? "DB insert failed." : "DB insert successful.");
-                db.close();
-                console.error(err);
-            });
+        if (docs.length != 0) {
+            return docs[0];
+        } else {
+            return null;
         }
     });
 }
