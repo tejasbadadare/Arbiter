@@ -29,6 +29,11 @@ exports.view = function(req, res){
                         console.log("Found the following records");
                         console.log(docs);
 
+                        if (docs.length == 0) {
+                          console.error("shitting");
+                          throw(null);
+                        }
+
                         // Insert the new decision.
                         console.error('getting here 3');
                         insertNewDecision(res, db, decision_name, choice_one, choice_two, docs[0].seq);
