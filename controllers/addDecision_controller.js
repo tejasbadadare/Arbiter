@@ -9,27 +9,43 @@ exports.view = function(req, res){
     var decision_name = req.body.decision_name;
     var choice_one = req.body.choice_one;
     var choice_two = req.body.choice_two;
-
-    console.log("decision_name: " + decision_name);
-    console.log("choice_once: " + choice_one);
-    console.log("choice_two: " + choice_two);
+    var date_created = Date.now();
 
     // Connect to MongoDB and insert new decision_name
     MongoClient.connect(url, function(err, db) {
         if (!err) {
             var collection_decisions = db.collection('decisions');
             var decisionToAdd = {
+                "_id" : getNextSequence("decId"),
                 "decision_name" : decision_name,
                 "choice_one" : choice_one,
                 "choice_two" : choice_two,
-                "userId" : userId
+                "score_a" : 0,
+                "score_b" : 0,
+                "date_created" : Date.now()
             };
 
             var ans = collection_decisions.insertOne(decisionToAdd, function(err, resp) {
-                console.log(err ? "DB insert failed." : "DB insert successful.");
+                if (!err) {
+                    console.log("Successfully inserted in DB: " + decision_name);
+                    res.redirect("../single.html");
+                } else {
+                    console.error("DB insert failed: " + decision_name);
+                    console.error(err);
+                }
                 db.close();
-                console.error(err);
             });
         }
     });
+}
+
+function getNextSequenceValue(sequenceName){
+
+   var sequenceDocument = db.counters.findAndModify({
+      query:{_id: sequenceName },
+      update: {$inc:{sequence_value:1}},
+      new:true
+   });
+
+   return sequenceDocument.sequence_value;
 }
