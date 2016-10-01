@@ -1,0 +1,2 @@
+# Arbiter
+Quick crowdsourced decisions!
