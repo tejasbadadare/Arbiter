@@ -4,8 +4,7 @@ app.use(express.static(__dirname + '/static'))
 
 app.get('/', function (req, res, next) {
   try {
-    var html = template({ title: 'Home' })
-    res.send(html)
+    res.sendFile('./single.html', {root: __dirname});
   } catch (e) {
     next(e)
   }
