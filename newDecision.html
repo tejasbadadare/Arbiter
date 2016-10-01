@@ -23,6 +23,7 @@
 						<nav class="links">
 							<ul>
 								<li><a href="#">My Posts</a></li>
+                <li><a href="#">Ask</a></li>
 
 							</ul>
 						</nav>
@@ -68,22 +69,23 @@
 						<!-- Post -->
 						<article class="post">
 							<header>
-                <h2>What's Your Question?</h2>
-                <form class="form-group" method="POST" action="/api/addDecision">
+                <div>
+                  <form class="form-group" method="POST" action="/api/addDecision">
 
-                    <label for="title">Question</label>
-                    <input type="text" class="form-control" id="decision_name" name="decision_name" placeholder="Ex: What should I wear today?">
+                      <label for="title">Question</label>
+                      <input type="text" class="form-control" id="decision_name" name="decision_name" placeholder="Ex: What should I wear today?">
 
-                    <label for="info">Choice One</label>
-                    <input type="text" class="form-control " id="choice_one" name="choice_one" placeholder="Ex: Clothes">
+                      <label for="info">Choice One</label>
+                      <input type="text" class="form-control " id="choice_one" name="choice_one" placeholder="Ex: Clothes">
 
-                    <label for="info">Choice Two</label>
-                    <input type="text" class="form-control " id="choice_two" name="choice_two" placeholder="Ex: Nothing">
-                    <br>
-                    <br>
-                    <button type="submit" class="btn btn-primary">Ask the Internet!</button>
+                      <label for="info">Choice Two</label>
+                      <input type="text" class="form-control " id="choice_two" name="choice_two" placeholder="Ex: Nothing">
+                      <br>
+                      <br>
+                      <button type="submit" class="btn btn-primary">Ask the Internet!</button>
 
-                  </form>
+                    </form>
+                  </div>
 							</header>
 
 
