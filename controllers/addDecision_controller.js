@@ -14,38 +14,71 @@ exports.view = function(req, res){
     // Connect to MongoDB and insert new decision_name
     MongoClient.connect(url, function(err, db) {
         if (!err) {
-            var collection_decisions = db.collection('decisions');
-            var decisionToAdd = {
-                "_id" : getNextSequence("decId"),
-                "decision_name" : decision_name,
-                "choice_one" : choice_one,
-                "choice_two" : choice_two,
-                "score_a" : 0,
-                "score_b" : 0,
-                "date_created" : Date.now()
-            };
 
-            var ans = collection_decisions.insertOne(decisionToAdd, function(err, resp) {
-                if (!err) {
-                    console.log("Successfully inserted in DB: " + decision_name);
-                    res.redirect("../single.html");
-                } else {
-                    console.error("DB insert failed: " + decision_name);
-                    console.error(err);
+            // Increment decision id
+            var sequenceDocument = db.collection('counters').updateOne(
+                {'_id': "decisionId" },
+                {'$inc':{"seq":1}},
+                function(err, doc) {
+                    if (err) {
+                        throw(err)
+                    }
+
+                    db.collection('counters').find({'_id': 'decisionId'}).toArray(function(err, docs) {
+                        if (err) throw (err);
+                        console.log("Found the following records");
+                        console.log(docs);
+
+                        // Insert the new decision.
+                        console.error('getting here 3');
+                        insertNewDecision(res, db, decision_name, choice_one, choice_two, docs[0].seq);
+                    });
+
                 }
-                db.close();
-            });
+            );
+
+
         }
     });
 }
 
-function getNextSequenceValue(sequenceName){
+function getIncremented() {
+    var findDocuments = function(db, callback) {
+        // Get the documents collection
+        var collection = db.collection('counters');
+        // Find some documents
+        collection.find({'_id': 'decisionId'}).toArray(function(err, docs) {
+            assert.equal(err, null);
+            console.log("Found the following records");
+            console.log(docs);
 
-   var sequenceDocument = db.counters.findAndModify({
-      query:{_id: sequenceName },
-      update: {$inc:{sequence_value:1}},
-      new:true
-   });
+            // Insert the new decision.
+            console.error('getting here 3');
+            insertNewDecision(decision_name, choice_one, choice_two);
+        });
+    }
+}
 
-   return sequenceDocument.sequence_value;
+function insertNewDecision(res, db, decision_name, choice_one, choice_two, decision_id) {
+    var collection_decisions = db.collection('decisions');
+    var decisionToAdd = {
+        "decision_id" : decision_id,
+        "decision_name" : decision_name,
+        "choice_one" : choice_one,
+        "choice_two" : choice_two,
+        "score_a" : 0,
+        "score_b" : 0,
+        "date_created" : Date.now()
+    };
+
+    var ans = collection_decisions.insertOne(decisionToAdd, function(err, resp) {
+        if (!err) {
+            console.log("Successfully inserted in DB: " + decision_name);
+            res.redirect("../index.html");
+        } else {
+            console.error("DB insert failed: " + decision_name);
+            console.error(err);
+        }
+        db.close();
+    });
 }
