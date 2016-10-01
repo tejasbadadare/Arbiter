@@ -17,6 +17,7 @@
   "author": "Sai Annam, Tejas Badadare, Aakash Kesavarapu, ",
   "license": "MIT",
   "dependencies": {
+    "angular": "^1.5.8",
     "es6-promise": ">0.0",
     "express": "^4.14.0",
     "node-uuid": "^1.4.7",
