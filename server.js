@@ -14,7 +14,7 @@ app.use(bodyParser.json());
 
 app.get('/', function (req, res, next) {
   try {
-    res.sendFile('./single.html', {root: __dirname});
+    res.sendFile('./index.html', {root: __dirname});
   } catch (e) {
     next(e)
   }
