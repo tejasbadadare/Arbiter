@@ -1,0 +1,29 @@
+{
+  "name": "arbiter",
+  "version": "1.0.0",
+  "description": "Quick, crowdsourced decisions. Ask a question and answer others'.",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/Schmavery/facebook-chat-api.git"
+  },
+  "keywords": [
+    "decisions",
+    "crowdsource",
+    "api"
+  ],
+  "author": "Sai Annam, Tejas Badadare, Aakash Kesavarapu, ",
+  "license": "MIT",
+  "dependencies": {
+    "npmlog": "^1.2.0",
+    "request": "^2.53.0",
+    "node-uuid": "^1.4.7",
+    "es6-promise": ">0.0",
+    "pg": ">0.0"
+  },
+  "engines": {
+    "node": "6.x"
+  },
+}
