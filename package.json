@@ -14,7 +14,7 @@
     "crowdsource",
     "api"
   ],
-  "author": "Sai Annam, Tejas Badadare, Aakash Kesavarapu, ",
+  "author": "Sai Annam, Tejas Badadare, Aakash Kesavarapu, Tarun Reddy",
   "license": "MIT",
   "dependencies": {
     "angular": "^1.5.8",

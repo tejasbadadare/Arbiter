@@ -1,10 +1,7 @@
 var mongodb = require('monogdb');
 var MongoClient = mongodb.MongoClient;
 var url = 'mongodb:27017/decisions';
-exports.addDecisionToDB = function(req, res) {
-  console.error("Not shitting");
-}
-/*
+
 module.exports = {
 
   console.error("In decision_add");
@@ -29,4 +26,4 @@ module.exports = {
         }
       });
     });
-} */
+}
