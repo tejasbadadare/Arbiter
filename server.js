@@ -1,4 +1,6 @@
-var express = require('express'), app = express()
+var express = require('express'), app = express();
+var router = express.Router();
+
 
 app.use(express.static(__dirname ))
 
