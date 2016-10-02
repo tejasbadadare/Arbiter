@@ -10,6 +10,8 @@ var bodyParser = require('body-parser');
 
 var addDecision_controller = require('./controllers/addDecision_controller');
 var getNewest_controller = require('./controllers/getNewestDecision_controller');
+var voteChoiceA_controller = require('./controllers/voteChoiceA_controller');
+var voteChoiceB_controller = require('./controllers/voteChoiceB_controller');
 
 
 app.use(express.static(__dirname ));
@@ -54,5 +56,5 @@ app.listen(process.env.PORT || 3000, function () {
 })
 
 app.post('/api/addDecision', addDecision_controller.view);
-app.post('/api/voteChoiceA', voteChoiceA_controller.js);
-app.post('/api/voteChoiceB', voteChoiceB_controller.js);
+app.post('/api/voteChoiceA', voteChoiceA_controller.view);
+app.post('/api/voteChoiceB', voteChoiceB_controller.view);
