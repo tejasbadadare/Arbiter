@@ -1508,7 +1508,7 @@
 	}
 
 	p {
-		margin: 0 0 2em 0;
+		margin: 0 0 5px 0;
 	}
 
 	h1, h2, h3, h4, h5, h6 {
@@ -2602,6 +2602,7 @@
 				.post > header .title h2 {
 					font-weight: 900;
 					font-size: 1.5em;
+					text-align: right;
 				}
 
 				.post > header .title > :last-child {
@@ -2805,6 +2806,7 @@
 
 					.post > header .title h2 {
 						font-size: 1.1em;
+						text-align: right;
 					}
 
 		}
@@ -3161,14 +3163,14 @@
 		-ms-transition: opacity 0.5s ease;
 		transition: opacity 0.5s ease;
 		margin: 0 auto;
-		max-width: 100%;
+		max-width: 70%;
 		opacity: 1;
-		padding: 4.5em;
-		width: 90em;
+		padding: 2em;
+		width: 70%;
 	}
 
 		body.is-menu-visible #wrapper {
-			opacity: 0.15;
+			opacity: 100%;
 		}
 
 		@media screen and (max-width: 1680px) {
@@ -3274,6 +3276,7 @@
 		}
 
 	#intro header h2 {
+		text-align: right;
 		font-size: 2em;
 		font-weight: 900;
 	}
@@ -3291,6 +3294,7 @@
 
 			#intro header h2 {
 				font-size: 2em;
+				text-align: right;
 			}
 
 			#intro header p {
@@ -3315,6 +3319,7 @@
 			}
 
 			#intro header h2 {
+				text-align: right;
 				font-size: 1.25em;
 			}
 

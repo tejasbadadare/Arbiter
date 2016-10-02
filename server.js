@@ -28,7 +28,6 @@ app.get('/', function (req, res, next) {
 
 app.get('/api/getNewest', function(req, res) {
     try {
-        console.log('coming server.js at getNewest');
 
         MongoClient.connect(url, function(err, db) {
 
