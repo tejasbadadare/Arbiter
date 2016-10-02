@@ -81,13 +81,19 @@
 							<p>{{ choice_b }}</p>
 							<footer>
 								<ul class="actions">
-									<li><a href="#" class="button big">Choice One</a></li>
-									<li><a href="#" class="button big">Choice Two</a></li>
+									<form method="POST" action="/api/voteChoiceA">
+										<input type="hidden" name="decision_id"></input>
+ 										<button name="choice_a_button">{{ choice_a }}</button>
+									</form>
+									<form method="POST" action="/api/voteChoiceB" >
+										<input type="hidden" name="decision_id"></input>
+										<button name="choice_b_button">{{ choice_b }}</button>
+									</form>
 								</ul>
 								<ul class="stats">
-									<li><a href="#" class="icon fa-plus">Comment</a></li>
-									<li><a href="#" class="icon fa-heart" id="numLikes">28</a></li>
-									<li><a href="#" class="icon fa-comment" id="numComments">128</a></li>
+									<li><a href="#" class="icon fa-plus" id="numComments">Comments: {{ numComments}}</a></li>
+									<li><a href="#" class="icon fa-heart" id="numVotesA">A: {{ numVotesA }}</a></li>
+									<li><a href="#" class="icon fa-heart" id="numVotesB">B: {{ numVotesB }}</a></li>
 								</ul>
 							</footer>
 						</article>
