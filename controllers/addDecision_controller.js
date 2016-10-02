@@ -6,6 +6,7 @@ var url = 'mongodb://localhost:27017/decisions';
 exports.view = function(req, res){
 
     var userId = "1234";
+    var username = req.body.user_name;
     var decision_name = req.body.decision_name;
     var choice_one = req.body.choice_one;
     var choice_two = req.body.choice_two;
@@ -36,7 +37,7 @@ exports.view = function(req, res){
 
                         // Insert the new decision.
                         console.error('getting here 3');
-                        insertNewDecision(res, db, decision_name, choice_one, choice_two, docs[0].seq);
+                        insertNewDecision(res, db, decision_name, choice_one, choice_two, docs[0].seq, username);
                     });
 
                 }
@@ -62,7 +63,7 @@ function getIncremented() {
     }
 }
 
-function insertNewDecision(res, db, decision_name, choice_one, choice_two, decision_id) {
+function insertNewDecision(res, db, decision_name, choice_one, choice_two, decision_id, username) {
     var collection_decisions = db.collection('decisions');
     var decisionToAdd = {
         "decision_id" : decision_id,
@@ -71,6 +72,7 @@ function insertNewDecision(res, db, decision_name, choice_one, choice_two, decis
         "choice_b" : choice_two,
         "score_a" : 0,
         "score_b" : 0,
+        "username" : username,
         "date_created" : Date.now()
     };
 
