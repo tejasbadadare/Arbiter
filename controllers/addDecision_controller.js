@@ -67,8 +67,8 @@ function insertNewDecision(res, db, decision_name, choice_one, choice_two, decis
     var decisionToAdd = {
         "decision_id" : decision_id,
         "decision_name" : decision_name,
-        "choice_one" : choice_one,
-        "choice_two" : choice_two,
+        "choice_a" : choice_one,
+        "choice_b" : choice_two,
         "score_a" : 0,
         "score_b" : 0,
         "date_created" : Date.now()
