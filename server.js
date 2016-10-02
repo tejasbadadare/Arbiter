@@ -18,6 +18,7 @@ app.use(bodyParser.urlencoded({
 }));
 app.use(bodyParser.json());
 
+
 app.get('/', function (req, res, next) {
     try {
         res.sendFile('./index.html', {root: __dirname});
@@ -25,6 +26,8 @@ app.get('/', function (req, res, next) {
         next(e)
     }
 })
+
+
 
 app.get('/api/getNewest', function(req, res) {
     try {
@@ -51,3 +54,5 @@ app.listen(process.env.PORT || 3000, function () {
 })
 
 app.post('/api/addDecision', addDecision_controller.view);
+app.post('/api/voteChoiceA', voteChoiceA_controller.js);
+app.post('/api/voteChoiceB', voteChoiceB_controller.js);
